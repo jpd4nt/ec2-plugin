@@ -541,6 +541,10 @@ public class SlaveTemplate implements Describable<SlaveTemplate> {
 					inst_tags.add(new Tag(t.getName(), t.getValue()));
 				}
 			}
+			
+			if (StringUtils.isNotBlank(getIamInstanceProfile())) {
+				launchSpecification.setIamInstanceProfile(new IamInstanceProfileSpecification().withArn(getIamInstanceProfile()));
+			}
 
 			spotRequest.setLaunchSpecification(launchSpecification);
 
